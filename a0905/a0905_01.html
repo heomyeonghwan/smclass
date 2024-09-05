@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>/* 내부링크 */
+  /*스타일 우선순위: 인라인>아이디>클래스>기본태그*/
+  * {margin: 0; padding: 0;} /*전체선택자*/
+  h1,h2{color: red; text-align: center;
+  border: 1px solid black;}/*그룹선택자*/
+  /*태그내에 쓰는 스타일 > 인라인 스타일(잘안씀)*/
+  img{width: 600px;} 
+  p.blueText{text-align: right;}/* class에 있는 태그 선택자*/
+  .blueText{color: green; font-size: 15px;}/* class선택자(여러곳 사용) */
+  #main{margin: 0 auto;width: 800px; height: 600px; border: 1px solid black;}/*아이디 선택자*/
+  ul{ color:  blue; font-size: 15px; list-style-type: square;}/*disc, circle,square,none*/
+  
+  </style>
+</head>
+<body><!-- = document-->
+  <div id="main">
+    <h2>스타일</h2>
+    <p class="blueText">문단 단락을 나누는 태그입니다.</p>
+    <div>top</div>
+    <img src="images/s01.jpg" alt="시드니">
+    <h1>세계 3대 미항</h1>
+    <ul class="blueText">
+      <li>시드니(sydney),호주</li>
+      <li>리우데자네이루, 브라질</li>
+      <li>나폴리,이탈리아</li>
+    </ul>
+  </div>
+</body>
+</html>
