@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *
+    {margin: 0; padding: 0;}
+    header
+    {width: 900px; height: 300px; margin: 30px auto;
+    border: 2px solid black; display: flex;
+    flex-direction: row; /*row가로, column세로 row-reverse 거꾸로 정렬*/
+    flex-wrap: nowrap;/*wrap 여러줄로 no-wrap 한줄로*/
+    /* 가로정렬방식 flex-start왼쪽정렬,flex-end 오른쪽정렬,center가운데정렬,space-between좌우공간정렬,
+    space-around 간격동일배치
+    */
+    justify-content: center;
+    
+    /* 세로정렬방식 center중앙정렬,flex-start상단정렬,flex-end하단정렬*/
+    align-items: center;
+    }
+    div
+    {width: 100px; height: 100px; background: yellow;
+    border: 5px solid black;}
+  </style>
+</head>
+<body>
+  <header>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </header>
+</body>
+</html>
