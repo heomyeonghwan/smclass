@@ -8,27 +8,27 @@
 <body>
   <script>
     // max 최대값 mmin 최솟값
-    // var num1 = Number(prompt("숫자를 입력하세요."));
-    // var num2 = Number(prompt("숫자를 입력하세요."));
-    // var num3 = Number(prompt("숫자를 입력하세요."));
+    var num1 = Number(prompt("숫자를 입력하세요."));
+    var num2 = Number(prompt("숫자를 입력하세요."));
+    var num3 = Number(prompt("숫자를 입력하세요."));
     // // 제일 높은 값을 출력
     // //if,삼항식을 사용하여 출력
     // var n_max = (num1>num2)?((num1>num3)?num1:num3):((num2>num3)?num2:num3);
     // document.write(n_max+"<br>");
 
-    // //if
-    // var n_max2
-    // if(num1>num2){
-    //   if(num1>num3){
-    //     n_max2 = num1;} 
-    // }else if(num1<num2){
-    //   if(num2>num3){
-    //     n_max2 = num2;
-    //   }else{
-    //     n_max2 = num3;
-    //   }
-    // }
-    // document.write(n_max2+"<br>");
+    //if
+    var n_max2
+    if(num1>num2){
+      if(num1>num3){
+        n_max2 = num1;} 
+    }else if(num1<num2){
+      if(num2>num3){
+        n_max2 = num2;
+      }else{
+        n_max2 = num3;
+      }
+    }
+    document.write(n_max2+"<br>");
 
     // var n_max3 = Math.max(num1,num2,num3);
     // var n_min = Math.max(num1,num2,num3);
