@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>Document</title>
+  <script>
+    //제이쿼리 구문
+    $(function(){
+       
+      //슬라이드 닫힘
+      $(".btn2").click(function(){
+        $(".box").stop();
+        //$(".box").slideUp(1000,"linear",function(){
+        $(".box").fadeOut(1000,"swing",function(){
+          
+        });
+    })
+    //슬라이드 열림
+    $(".btn1").click(function(){
+        $(".box").stop();
+        $(".box").slideDown(1000,"linear",function(){
+        
+          });
+      })
+     //
+    $(".btn3").on("click",function(){
+      $(".box").fadeIn(1000,"swing",function(){
+
+      })
+    })
+     //toggle 효과
+    $(".btn4").on("click",function(){
+      $(".box").stop();
+      $(".box").slideToggle(500,"linear");
+    })
+
+
+    // $("#in").mouseover(function(){
+    //   $(this).css({"border":"4px solid black","background":"yellow"});
+    // })
+    // $("#in").focus(function(){
+    //   $(this).css({"border":"4px solid black","background":"yellow"});
+    // })
+    // $("#in").mouseout(function(){
+    //   $(this).css({"border":"none","background":"none"});
+    // })
+
+    // //on 두개이상 사용시 사용
+    // $("#in").on("mouseover focus",function(){
+    //   $(this).css({"border":"4px solid black","background":"yellow"});
+    // })
+
+    //$("#in").off("mouseover");
+    
+    
+    //$("#in").trigger("mouseover");
+
+    });//제이퀘리 구문
+  </script>
+  <style>
+    .content{width: 400px;
+    border: 1px solid black;}
+  </style>
+</head>
+<body>
+  <button class="btn1">슬라이드열림</button>
+  <button class="btn2">슬라이드닫힘</button>
+  <button class="btn3">fadeIn</button>
+  <button class="btn4">toggle</button>
+  <div class="box">
+    <div class="content">
+      이중 주차된 입주민 차량을 대신 이동시키다 12중 추돌 사고를 낸 70대 경비원이 불입건됐다.
+       경찰은 적용할 수 있는 형법 조항이 없어 민사로 해결해야 할 문제라고 판단했다.
+       서울 영등포경찰서는 경비원 안모(77)씨에게 도로교통법위반 혐의를 적용하지 않고
+        지난달 입건 전 조사를 종결했다고 24일 밝혔다.
+    </div>
+
+  </div>
+
+</body>
+</html>
