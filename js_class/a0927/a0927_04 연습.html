@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Document</title>
+  <style>
+    #main{width: 800px; margin: 30px auto; text-align: center;}
+    #wrap{width: 800px; height: 400px; border: 3px solid black; 
+    margin-top: 30px;}
+    select{width: 120px; height: 40px;}
+    button{width: 120px; height: 40px;
+    }
+  </style>
+  <script>
+   $(function(){
+    $.ajax({
+      url:"js/stuData.json",
+      type:"get",
+      data:"",
+      dataType:"json",
+      success:function(data){
+        alert("성공");
+        console.log(data);
+        $each(data,function(idx,val){
+          console.log(val.name.split(" ")[1]);
+        })
+      },
+      error:function(){
+        alert("실패");
+      }
+    });//ajax
+   });//jquery
+
+  </script>
+</head>
+<body>
+  <div id="main">
+    <select name="dataList" id="dataList">
+      <option value="10">1-10</option>
+      <option value="20">11-20</option>
+      <option value="30">21-30</option>
+    </select>
+    <button id="btn">데이터 불러오기</button>
+   
+ 
+    <br>
+    <h1>학생성적프로그램</h1>
+    <div id="wrap">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+</body>
+</html>
