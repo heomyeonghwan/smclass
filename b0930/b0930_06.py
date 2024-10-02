@@ -1,4 +1,4 @@
-stu_data = ['홍길동',100,100,100,99]
+#stu_data = ['홍길동',100,100,100,99]
 
 # for s in stu_data:
 #   print(s)
@@ -19,13 +19,14 @@ stu_datas = [[1,'유관순',100,100,100,99],[2,'이순신',100,99,98,99],[3,'김
 
 
 # #학생데이터에서 합계,평균을 추가해서 1줄로 출력하시오. 2
-for s_t in stu_title:
-  print("{}".format(s_t),end='\t')
-print()
-print("-"*60)
+# for s_t in stu_title:
+#   print("{}".format(s_t),end='\t')
+# print()
+# print("-"*60)
 
-for s in stu_datas:
- print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{:.2f}".format(s[0],s[1],s[2],s[3],s[4],s[5],(s[2]+s[3]+s[4]+s[5]),((s[2]+s[3]+s[4]+s[5])/4)))
+# for s in stu_datas:
+#  print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{:.2f}".format(s[0],s[1],s[2],s[3],s[4],s[5],(s[2]+s[3]+s[4]+s[5]),((s[2]+s[3]+s[4]+s[5])/4)))
+
 
 
 # #이순신의 평균 출력

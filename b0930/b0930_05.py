@@ -41,10 +41,10 @@ print(4**4) #4*4*4*4 - 25 제곱
 
 
 # #
-# a=0
-# for i in range(1,11): #range > 범위 ~에서 ~전까지
-#   a = a+i # a += i
-#   print(a)
+a=0
+for i in range(1,11): #range > 범위 ~에서 ~전까지
+  a = a+i # a += i
+  print(a)
 
 
 
