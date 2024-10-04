@@ -1,7 +1,7 @@
 import random
 
 #랜덤 숫자 생성 - random
-#random() : 0<=x<1 실수값 추출
+####random() : 0<=x<1 실수값 추출
 print(random.random())
 #0-9
 print(int(random.random()*10))
