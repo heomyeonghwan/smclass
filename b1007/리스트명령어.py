@@ -1,6 +1,6 @@
 #####리스트###
 
-# a,b,c,d,e,f,g = 0,0,0,0,0,0,
+# a,b,c,d,e,f,g = 0,0,0,0,0,0,0
 # total =0
 
 # #a,b,c,d,e 의 변수에 숫자를 입력받아 합계를 출력하시오
@@ -16,10 +16,10 @@
 
 # a_list=[0,0,0,0,0,0,0]
 # total=0
-# # for a in a_list:
-# #   a= int(input("숫자를 입력하세요."))
-# #   total += a
-# # print("합계:",total)
+# for a in a_list:
+#   a= int(input("숫자를 입력하세요."))
+#   total += a
+# print("합계:",total)
 
 # for idx,a in enumerate(a_list):
 #   a= int(input(f"{idx+1}숫자를 입력하세요."))
