@@ -13,7 +13,9 @@ chk = 0    # 체크변수
 count = 1  # 성적처리
 stuNo = len(students)  # 리스트에 학생이 있으면, 그 인원으로 변경
 no=0;name="";kor=0;eng=0;math=0;total=0;avg=0;rank=0 #성적처리변수
-while True:
+
+#메뉴출력함수
+def title_program():
   print("[ 학생성적프로그램 ]")
   print("-"*60)
   print("1. 학생성적입력")
@@ -26,8 +28,11 @@ while True:
   print("0. 프로그램 종료")
   print("-"*60)
   choice = input("원하는 번호를 입력하세요.(0.종료)>> ")
-  if choice =="1":
-    while True:
+  return choice
+#---메뉴출력함수 끝
+#학생성적입력 함수 - 일반변수 변경
+def stu_input(stuNo):
+  while True:
       print("[학생성적입력]")
       #학생성적 직접입력
       no = stuNo+1 ##리스트 - 학생수
@@ -50,6 +55,13 @@ while True:
       stuNo += 1 ##학생수 증가
       print(f"{name}의 성적이 저장되었습니다.")
       print()
+  return stuNo
+#------------ 성적입력끝
+
+while True:
+  choice = title_program()          ## 메뉴출력함수 호출
+  if choice =="1":
+    stuNo = stu_input(stuNo)                     ##학생성적입력 함수 호출
   elif choice == "2":
     print("[학생성적출력]")
     for title in s_title:
@@ -93,7 +105,95 @@ while True:
         print()
         print("-"*60)
         print(f"{s['no']}\t{s['name']}\t{s['kor']}\t{s['eng']}\t{s['math']}\t{s['total']}\t{s['avg']:.2f}\t{s['rank']}")
+  elif choice =="3":
+    print("[학생성적수정]")
+    name = input("찾고자하는 학생의 이름을 입력하세요.")
+    chk=0
+    for s in students:
+      if s[1] == name:
+        #학생성적 수정
+        print(f"{name}학생을 찾았습니다")
+        print()
+        print("[수정 과목 선택]")
+        print("1. 국어점수")
+        print("2. 영어점수")
+        print("3. 수학점수")
+        choice = input("원하는 번호를 입력하세요.>>")
+        if choice == "1":
+          print(f"기존 국어점수:{s[2]}")
+          s[2] = int(input("변경 국어점수: "))
+        elif choice == "2":
+          print("기존 영어점수:{}".format(s[3]))
+          s[3] = int(input("변경 영어점수: "))
+        elif choice == "3":
+          print(f"기존 수학점수:{s[4]}")
+          s[4] = int(input("변경 수학점수: "))
+        
+        s[5] = s[2]+s[3]+s[4]  ##합계
+        s[6] = s[5]/3          ##평균
+        print(f"{name}학생의 성적이 수정되었습니다.")
+        print()
+        #상단 타이틀 출력
+        for title in s_title:
+          print(f"{title}\t",end="")
+        print()
+        print("-"*60)
+        #학생출력
+        print(f"{s[0]}\t{s[1]}\t{s[2]}\t{s[3]}\t{s[4]}\t{s[5]}\t{s[6]:.2f}\t{s[7]}")
+        print()
+        chk=1
+        #모든 학생 비교가 끝난 후, chk 확인
+    if chk ==0:
+      print(f"{name}학생이 없습니다. 다시 입력하세요")
+    print()
+  elif choice =="4":
+    print("[학생성적검색]")
+    name = input("찾고자하는 학생의 이름을 입력하세요.")
+    chk=0
+    for s in students:
+      if s[1] == name:
+        #학생출력
+        #상단 타이틀 출력
+        for title in s_title:
+          print(f"{title}\t",end="")
+        print()
+        print("-"*60)
+        #학생출력
+        print(f"{s[0]}\t{s[1]}\t{s[2]}\t{s[3]}\t{s[4]}\t{s[5]}\t{s[6]:.2f}\t{s[7]}")
+        print()
+        chk=1
+        #모든 학생 비교가 끝난 후, chk 확인
+    if chk ==0:
+      print(f"{name}학생이 없습니다. 다시 입력하세요")
 
+  elif choice =="5":
+    print("[학생성적 삭제]")
+    name = input("찾고자하는 학생의 이름을 입력하세요.")
+    chk=0
+    for idx,s in enumerate(students):
+      if s[1] == name:
+        chk=1
+        choice = input(f"{name} 학생성적을 삭제하시겠습니까?(삭제시 복구불가)\n1.삭제 2.삭제취소")
+        if choice =="1":
+          del students[idx]
+          print(f"{name} 학생 성적이 삭제되었습니다.")
+        else:
+          print("학생성적 삭제가 취소되었습니다.")
+          break
+        #모든 학생 비교가 끝난 후, chk 확인
+    if chk ==0:
+      print(f"{name}학생이 없습니다. 다시 입력하세요")
+    
+  elif choice =="6":
+    print("[등수 처리]")
+    for s in students:
+      count = 1
+      for st in students:
+        if s[5] < st[5]:
+          count += 1
+      s[7] = count ##등수입력
+    print("등수처리가 완료되었습니다.")
+    print()
 
   elif choice == "7":
     while True:
@@ -115,29 +215,8 @@ while True:
         print("이전페이지로 이동합니다.")
         break
       print("정렬이 완료되었습니다.")
-
-
-
-
-
-
-# no = 1
-# #학생성적 입렵부분을 구현하시오
-# #dict타입으로 입력을할것
-# #번호,이름,국어,영어,수학,합계,평균,등수
-# #입력이 완료되면 출력이 바로 되도록하시오
-
-# print("[학생성적입력]")
-# while True:
-  
-#   name = input("학생이름을 입력하세요.>>")
-#   kor = int(input("국어점수를 입력하세요"))
-#   eng = int(input("영어점수를 입력하세요"))
-#   math = int(input("수학점수를 입력하세요"))
-#   total = kor+eng+math
-#   avg = total/3
-#   rank = 0
-#   s = {"no":{no},}
-
-#   no +=1
-  
+      
+  elif choice =="0":
+    print("[프로그램종료]")
+    print("프로그램을 종료합니다.")
+    break
