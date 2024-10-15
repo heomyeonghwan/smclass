@@ -8,8 +8,8 @@ while True:
   print("1. 일본어 인사")
   print("1. 중국어 인사")
   print("1.프랑스어 인사")
-  choice = input("원하는 항목번호를 선택하세요.(1)>>")
   count = int(input("한국어 반복횟수를 선택하세요.(3)>>"))
+  choice = input("원하는 항목번호를 선택하세요.(1)>>")
   
   if choice == "1":
     operate(count) ##함수호출

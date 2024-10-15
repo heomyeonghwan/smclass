@@ -1,28 +1,9 @@
-import random
-a_list=[]
-for i in range(25):
-  a_list.append(i+1)
-print(a_list)
-random.shuffle(a_list)
-print(a_list)
-b_list=[]
-# for i in range(5):
-#   a=[]
-#   for j in range(5):
-#     a.append(a_list[(5*i+j)])
-#   print(a)
-#   b_list.append(a)
-# print(b_list)
-for i in range(0,25,5):
-  b_list.append(a_list[i:i+5])
-print(b_list)
-
-print()
-print("\t0\t1\t2\t3\t4")
-print()
-print("-"*60)
-for i in range(5):
-  print(i,"|",end="\t")
-  for j in range(5):
-    print(b_list[i][j],end="\t")
-  print()
+#함수 - 매개변수(일반변수,복합변수)
+#1.!!!!! 함수 일반 매개변수 > return이 아니면 값이 함수밖으로 나올수없다
+def calc(h):
+  h +=100
+  return h
+h = 20
+h = calc(h) #호출만 하고 일반변수 값을 넣어주지 않으면 값이 변경되지않음.
+#calc(h) #호출만 하면값이 변경되지않음
+print(h)
