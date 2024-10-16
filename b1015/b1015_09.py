@@ -1,10 +1,10 @@
 # def func(v):
 #   return v*2
 
+# print(func(2))
 # #lambda v:v*2  -위에랑같음
 
 #기본적인 함수사용
-# print(func(2))
 
 # aArr =[1,2,3,4]
 # print(aArr)
@@ -129,5 +129,10 @@ print(aArr)
 
 result = 1
 for i in range(1,5):
+  result *= i
+print(result)
+
+result = 1
+for i in range(4,0,-1):
   result *= i
 print(result)

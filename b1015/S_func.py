@@ -1,11 +1,38 @@
 # students 리스트 타입
 students = [
-  {"no":1,"name":"홍길동","kor":100,"eng":100,"math":99,"total":299,"avg":99.67,"rank":0},
-  {"no":2,"name":"유관순","kor":80,"eng":80,"math":85,"total":245,"avg":81.67,"rank":0},
-  {"no":3,"name":"이순신","kor":90,"eng":90,"math":91,"total":271,"avg":90.33,"rank":0},
-  {"no":4,"name":"강감찬","kor":60,"eng":65,"math":67,"total":192,"avg":64.00,"rank":0},
-  {"no":5,"name":"김구","kor":100,"eng":100,"math":84,"total":284,"avg":94.67,"rank":0},
+  # {"no":1,"name":"홍길동","kor":100,"eng":100,"math":99,"total":299,"avg":99.67,"rank":0},
+  # {"no":2,"name":"유관순","kor":80,"eng":80,"math":85,"total":245,"avg":81.67,"rank":0},
+  # {"no":3,"name":"이순신","kor":90,"eng":90,"math":91,"total":271,"avg":90.33,"rank":0},
+  # {"no":4,"name":"강감찬","kor":60,"eng":65,"math":67,"total":192,"avg":64.00,"rank":0},
+  # {"no":5,"name":"김구","kor":100,"eng":100,"math":84,"total":284,"avg":94.67,"rank":0},
 ]
+stu_key=["no","name","kor","eng","math","total","avg","rank"]
+# students.txt파일 읽기 students딕셔너리 저장
+f = open('students.txt','r',encoding='utf-8')
+while True:
+  line = f.readline()
+  if not line:break
+  s =line.strip().split(",")
+  # s[0] = int(s[0]) ### 위 포문이랑 같음
+  # s[2] = int(s[2])
+  # s[3] = int(s[3])
+  # s[4] = int(s[4])
+  # s[5] = int(s[5])
+  # s[6] = float(s[6])
+  # s[7] = int(s[7])
+
+  for i in range(len(s)):
+    if i ==1: continue
+    elif i ==6 : s[6] = float(s[6])
+    else: int(s[i]) 
+
+  students.append(dict(zip(stu_key,s)))
+  print(line.strip())
+print(students)
+f.close()
+
+#-------------------------------------------------------
+
 choice = 0 # 전역변수
 stuNo = len(students)  # 리스트에 학생이 있으면, 그 인원으로 변경
 
@@ -53,6 +80,14 @@ def stu_input(stuNo):
              "math":math,"total":total,"avg":avg,"rank":rank }
       students.append(ss)
       stuNo += 1  # 학생수 1증가
+ #students.txt 파일쓰기
+      f = open('students.txt','w',encoding='utf-8')
+      data = f"{ss['no']},{ss['name']},{ss['kor']},{ss['eng']},{ss['math']},{ss['total']},{ss['avg']},{ss['rank']}\n"
+      f.write(data)
+      f.close()
+
+
+#---------------------------------------------
       print(f"{name} 학생성적이 저장되었습니다.!")
       print()
   return stuNo

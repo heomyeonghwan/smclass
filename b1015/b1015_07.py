@@ -40,6 +40,7 @@ students = [
 
 stu = "6,홍길자,100,100,100,300,100.0,0" #파일에 저장하는 형태
 sArr = stu.split(",")
+print(sArr)
 #문자열 > 리스트 변경 > 타입을변경
 
 for i,s in enumerate(sArr):

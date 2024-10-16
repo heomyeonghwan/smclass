@@ -1,9 +1,9 @@
-#함수 - 매개변수(일반변수,복합변수)
-#1.!!!!! 함수 일반 매개변수 > return이 아니면 값이 함수밖으로 나올수없다
-def calc(h):
-  h +=100
-  return h
-h = 20
-h = calc(h) #호출만 하고 일반변수 값을 넣어주지 않으면 값이 변경되지않음.
-#calc(h) #호출만 하면값이 변경되지않음
-print(h)
+stu_key=["no","name","kor","eng","math","total","avg","rank"]
+students=[]
+# 파일읽기 - r
+f = open('a.txt','r',encoding='utf-8')
+
+while True:
+  line = f.readline()
+  if not line:break
+  print(line.strip())
