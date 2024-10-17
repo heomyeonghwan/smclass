@@ -53,6 +53,21 @@ def buy(choice,cartNo):
   return cartNo
 
 
+def buy_save():
+  # member.txt 파일생성해서 csv형태로 문자열로 저장하시오.
+  f = open('member.txt','w',encoding='utf-8')
+  for m in member:
+    f.write(f"{m['id']},{m['pw']},{m['name']},{m['nicName']},{m['address']},{m['money']}\n")
+  f.close()
+  # cart.txt 파일생성해서 csv형태로 문자열로 저장하시오.
+  f = open('cart.txt','w',encoding='utf-8')
+  for c in cart:
+    f.write(f"{c['cno']},{c['id']},{c['name']},{c['pCode']},{c['pName']},{c['price']},{c['date']}\n")
+  f.close()
+  print("내용저장이 완료되었습니다.")
+  print()
+
+
 def buy_output():
   # 구매내역 출력
   print(f"{p_title[0]}\t{p_title[1]}\t{p_title[2]}\t{p_title[3]}\t{p_title[4]:14s}\t{p_title[5]}\t{p_title[6]}")
@@ -72,21 +87,6 @@ def buy_money():
   input_money = int(input("원하는 금액을 입력하세요.>> "))
   session_info['money'] += input_money
   print(f"충전된 금액 : {session_info['money']}")
-
-
-def buy_save():
-  # member.txt 파일생성해서 csv형태로 문자열로 저장하시오.
-  f = open('member.txt','w',encoding='utf-8')
-  for m in member:
-    f.write(f"{m['id']},{m['pw']},{m['name']},{m['nicName']},{m['address']},{m['money']}\n")
-  f.close()
-  # cart.txt 파일생성해서 csv형태로 문자열로 저장하시오.
-  f = open('cart.txt','w',encoding='utf-8')
-  for c in cart:
-    f.write(f"{c['cno']},{c['id']},{c['name']},{c['pCode']},{c['pName']},{c['price']},{c['date']}\n")
-  f.close()
-  print("내용저장이 완료되었습니다.")
-  print()
 
   
 #####  프로그램 시작  #####
