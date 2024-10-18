@@ -79,8 +79,8 @@ while True:
     pw = input("PW를 입력하세요")
     name = input("이름을 입력하세요")
     nicName = input("닉네임을 입력하세요")
-    money = int(input("충전금액을 입력하세요"))
     address = input("주소를 입력하세요")
+    money = int(input("충전금액을 입력하세요"))
     m_list=[id,pw,name,nicName,address,money]
     members.append(dict(zip(m_title,m_list)))
     print(f"{id} 님 회원가입이 완료되었습니다")
@@ -109,16 +109,77 @@ while True:
   choice = int(input("구매하려는 상품번호를 입력하세요.>> "))
   # 프로그램 구현
   if choice == 1:
-    pass    # 상품구매함수 호출
+    print(f"{product[choice-1]['pName']} 를 구매하셨습니다.")
+    print("구매내역에 등록합니다.")
+    print()
+    # 로그인정보 - session_info
+    now = datetime.datetime.now()
+    today = now.strftime("%Y-%m-%d %H:%M:%S")
+    c = {"cno":cartNo+1,"id":session_info['id'],"name":session_info['name'],"pCode":product[choice-1]['pCode'],"pName":product[choice-1]['pName'],"price":product[choice-1]['price'],"date":today}
+    session_info['money'] -= product[choice-1]['price']
+    cart.append(c)
+    cartNo += 1
+    
   elif choice == 2:
-    pass    # 상품구매함수 호출
+    print(f"{product[choice-1]['pName']} 를 구매하셨습니다.")
+    print("구매내역에 등록합니다.")
+    print()
+    # 로그인정보 - session_info
+    now = datetime.datetime.now()
+    today = now.strftime("%Y-%m-%d %H:%M:%S")
+    c = {"cno":cartNo+1,"id":session_info['id'],"name":session_info['name'],"pCode":product[choice-1]['pCode'],"pName":product[choice-1]['pName'],"price":product[choice-1]['price'],"date":today}
+    session_info['money'] -= product[choice-1]['price']
+    cart.append(c)
+    cartNo += 1   
   elif choice == 3:
-    pass    # 상품구매함수 호출
+    print(f"{product[choice-1]['pName']} 를 구매하셨습니다.")
+    print("구매내역에 등록합니다.")
+    print()
+    # 로그인정보 - session_info
+    now = datetime.datetime.now()
+    today = now.strftime("%Y-%m-%d %H:%M:%S")
+    c = {"cno":cartNo+1,"id":session_info['id'],"name":session_info['name'],"pCode":product[choice-1]['pCode'],"pName":product[choice-1]['pName'],"price":product[choice-1]['price'],"date":today}
+    session_info['money'] -= product[choice-1]['price']
+    cart.append(c)
+    cartNo += 1    
   elif choice == 4:
-    pass    # 상품구매함수 호출
+    print(f"{product[choice-1]['pName']} 를 구매하셨습니다.")
+    print("구매내역에 등록합니다.")
+    print()
+    # 로그인정보 - session_info
+    now = datetime.datetime.now()
+    today = now.strftime("%Y-%m-%d %H:%M:%S")
+    c = {"cno":cartNo+1,"id":session_info['id'],"name":session_info['name'],"pCode":product[choice-1]['pCode'],"pName":product[choice-1]['pName'],"price":product[choice-1]['price'],"date":today}
+    session_info['money'] -= product[choice-1]['price']
+    cart.append(c)
+    cartNo += 1   
   elif choice == 7:
-    pass                   # 내용저장함수 호출
+    # member.txt 파일생성해서 csv형태로 문자열로 저장하시오.
+    f = open('member.txt','w',encoding='utf-8')
+    for m in members:
+      f.write(f"{m['id']},{m['pw']},{m['name']},{m['nicName']},{m['address']},{m['money']}\n")
+    f.close()
+    # cart.txt 파일생성해서 csv형태로 문자열로 저장하시오.
+    f = open('cart.txt','w',encoding='utf-8')
+    for c in cart:
+      f.write(f"{c['cno']},{c['id']},{c['name']},{c['pCode']},{c['pName']},{c['price']},{c['date']}\n")
+    f.close()
+    print("내용저장이 완료되었습니다.")
+    print()                  
   elif choice == 8:
-    pass
+    # 구매내역 출력
+    print(f"{p_title[0]}\t{p_title[1]}\t{p_title[2]}\t{p_title[3]}\t{p_title[4]:14s}\t{p_title[5]}\t{p_title[6]}")
+    print("-"*85)
+    sum = 0
+    for c in cart:
+      sum += c['price']
+      print(f"{c['cno']}\t{c['id']}\t{c['name']}\t{c['pCode']}\t{c['pName']:14s}\t{c['price']}\t{c['date']}")
+    print(f"총 구매 금액 : {sum:,}")
+    print(f"총 구매 건수 : {len(cart)}")
   elif choice == 9:
-    pass
+    # 금액충전
+    print("[ 금액충전 ]")
+    print(f"현재 금액 : {session_info['money']}")
+    input_money = int(input("원하는 금액을 입력하세요.>> "))
+    session_info['money'] += input_money
+    print(f"충전된 금액 : {session_info['money']}")

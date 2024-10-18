@@ -22,7 +22,7 @@ while True:
   m[5] = int(m[5])
   member.append(dict(zip(m_keys,m)))
 print(member)
-
+f.close()
 #cart 리스트
 #-------cart파일 읽고 cart 딕셔너리 저장
 cartNo = 0
@@ -37,7 +37,7 @@ while True:
   c[0] = int(c[0])
   c[5] = int(c[5])
   cart.append(dict(zip(c_keys,c)))
-
+f.close()
 #상품 리스트
 #product,session_info,p_title
 product = [
