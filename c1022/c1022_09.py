@@ -17,5 +17,17 @@
 # #print(int(a)) #에러
 # print("완료")
 
-#정렬
-pri("깁ㅗㄴ:")
+# 정렬
+n_lists = [
+  ["john",100,4.5,1000],
+  ["park",80,4.2,800],
+  ["lee",90,4.4,2000],
+  ["trumf",200,4.7,10],
+  ["bill",30,4.3,30]
+]
+
+print("기본 :",n_lists)
+# n_lists 에서 1개(n_list) x대입
+n_lists.sort(key=lambda x:x[0],reverse=True)
+print("이름정렬 :", n_lists)
+

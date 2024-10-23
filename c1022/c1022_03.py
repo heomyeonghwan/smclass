@@ -11,7 +11,7 @@ soup = BeautifulSoup(res.text,"lxml")
 
 sum = 0
 #기준점
-data = soup.select_one("# ")
+data = soup.select_one("#container > div.aside > div > div.aside_area.aside_popular")
 #인기검색종목
 print(f"[{data.select_one("span").text}]")
 #1,2,3,4,5 위
