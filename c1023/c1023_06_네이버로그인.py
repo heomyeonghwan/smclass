@@ -40,4 +40,4 @@ time.sleep(random.randint(2,5))
 elem = browser.find_element(By.CLASS_NAME,'btn_login')
 elem.click()
 #완료
-time.sleep(100)
+time.sleep(100) 
