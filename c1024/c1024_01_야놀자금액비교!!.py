@@ -15,7 +15,7 @@ url = "https://www.yanolja.com/"
 # #창 최대화
 # browser.maximize_window()
 # #URL 입력
-# 
+# browser.get(url)
 
 
 # #검색창 클릭
