@@ -25,5 +25,5 @@ soup = BeautifulSoup(browser.page_source,'lxml')
 with open(f'c1025/1.txt','w',encoding='utf-8') as f:
   f.write(soup.prettify())
 
-wi
+
   
