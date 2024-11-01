@@ -41,7 +41,7 @@ def memLogin():
   cursor.close() # close되면 다시 커서 커넥트해야함
   if row == None:
     print("아이디 또는 패스워드가 일치하지 않습니다. 다시 입력하세요!! ") 
-    return #함수일때는 continue 말고 returnTma
+    return #함수일때는 continue 말고 return씀
 
   #이후 프로그램 구성
   print(f"{row[2]} 님 환영합니다.")
