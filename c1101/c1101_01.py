@@ -19,10 +19,10 @@ def member_count():
   ###employees 테이블 부서번호 50번인 사원수를 가져오시오.
   sql = "select count(department_id) from employees where department_id =50"
   cursor.execute(sql) #날리기
-  rows = cursor.fetchall() #
-  print(rows)
+  row = cursor.fetchone() #
+  print(row)
   cursor.close() # close되면 다시 커서 커넥트해야함
-  return rows
+  return row
   
 
 ###회원수 확인값을 리턴하시오.
@@ -30,7 +30,7 @@ all_member = member_count()
 #all_member = 100
 
 print("[ 커뮤니티 ]")
-print(f"현재 회원수: {all_member}")
+print(f"현재 회원수: {all_member[0]},부서번호: {all_member[1]},부서명: {all_member[2]}")
 print()
 print("1. 로그인")
 print("1. 회원가입")
