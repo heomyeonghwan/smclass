@@ -396,7 +396,37 @@ commit;
 select * from mem;
 
 
+-- # employees테이블 부서번호 50번인, 부서인원,부서번호,부서명 가져오시오.
+select count(*) person, department_id from employees
+where department_id = 50
+group by department_id;
 
+
+-- 부서번호, 부서명
+select a.department_id,department_name
+from employees a,departments b
+where a.department_id = b.department_id
+;
+
+
+-- employees테이블 부서별개수,부서번호,부서이름 , 그룹함수
+select count(*) no,a.department_id dept,department_name deptname 
+from employees a, departments b
+where a.department_id = b.department_id and a.department_id=50
+group by a.department_id,department_name
+;
+
+
+desc mem;
+
+select * from mem;
+
+insert into mem (id,pw,name,age,birth,gender,hobby) values ('ddd','1111','강감찬',22,'20220312','Male','game' )
+;
+
+rollback;
+
+select * from students;
 
 
 
