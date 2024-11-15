@@ -1,0 +1,61 @@
+pip install --upgrade pip
+[디장고 설치]
+pip install Django
+[디장고 업그레이드]
+pip install Django --upgrade
+[디장고 위치확인]
+python -c "import django; print(django.__path__)"
+*** 디장고 프로젝트
+[ 프로젝트 생성 ]
+django-admin startproject tempPjt
+예)
+django-admin startproject shopmall
+django-admin startproject naverProject
+django-admin startproject kt
+django-admin startproject sktelecom
+[디렉터리 확인]
+--dir
+
+[ 애플리케이션 생성]
+-- manage.py 사용
+python manage.py startapp students
+[ 프로젝트 이름 변경 ]
+-- project 폴더에서 실행
+move tempPjt tempProject
+[ DB 테이블 설치 ]
+python manage.py migrate # 동기화
+-- db에 table설치,변경,삭제,추가 있는지 확인
+python manage.py makemigrations
+-- 관리자 등록
+python manage.py createsuperuser
+
+
+[ 서버 구동 ]
+python -u manage.py runserver 0.0.0.0:8000
+
+브라우저 url
+http://127.0.0.1:8000/
+-- 관리자페이지
+http://127.0.0.1:8000/admin
+
+--html자동완성키 설정
+1.auto close tag 확장팩 설치
+2. ctrl + 쉼표
+3.setting 입력
+4.Font  Ligatures 
+setting.json 클릭
+
+"auto-close-tag.activationOnLanguage": [
+        "*"
+    ],
+ "emmet.includeLanguages": { "django-html": "html" },
+추가
+
+
+--root 페이지
+http://127.0.0.1:8000/
+./ : 현재폴더에 뒤에 붙이기
+../ : 이전폴더에서 뒤에 붙이기
+/ : root페이지 뒤에 붙이기
+
+

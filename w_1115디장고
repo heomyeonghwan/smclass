@@ -1,0 +1,54 @@
+[model ORM 명령어]
+
+from students.models import Student
+-- insert 입력
+qs = Student(s_name='hong1',s_major='컴퓨터공학',s_age=20,s_grade=1,s_gender='M')
+qs.save()
+
+--create: qs.save() 없이 저장됨
+Student.objects.create(s_name='hong1',s_major='컴퓨터공학',s_age=20,s_grade=1,s_gender='M')
+
+--select 복수
+--전체 검색
+qs = Student.objects.all()
+qs[0],qs[1]
+
+qs[0].s_name
+
+--select 1명
+--부분검색
+qs = Student.objects.get(s_name='hong1') ##1개를가져옴(Student 객체타입)
+qs.s_name
+qs = Student.objects.filter(s_name='hong1') 
+##여러개를 가져옴 (QuerySet 1개가 넘어와도 리스트형태)
+qs[0].s_name
+qs
+
+--비교검색
+__lt (보다 작다)
+__lte (보다 작거나 같다)
+__gt (보다 크다)
+__gte (보다 크거나 같다)
+__isnull (null인 자료검색)
+__contains (특정 문자열 포함)
+__startwith(특정 문자열로 시작)
+__endwith(특정 문자열로 끝남)
+예)
+qs = Student.objects.filter(s_age__lt=21)
+qs = Student.objects.filter(s_age__gt=21)
+qs = Student.objects.filter(s_name__contains='순')
+
+-- update 수정
+-- 해당데이터 검색 후 , 컬럼에 값을 입력하면 수정됨.
+qs = Student.objects.get(s_name='hong1')
+qs.s_age=25
+qs.save()
+
+
+--delete  삭제
+1. qs = Student.objects.get(s_name='hong1')
+qs.delete()
+qs.save()
+
+2. Student.objects.get(s_name='홍길동').delete()
+qs.save()
