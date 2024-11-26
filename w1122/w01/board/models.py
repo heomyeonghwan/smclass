@@ -1,12 +1,11 @@
 from django.db import models
 
-#
-
 class Board(models.Model):
+  # 게시판 번호
   bno = models.AutoField(primary_key=True)
   id = models.CharField(max_length=100)
   # member = models.ForeignKey(Member,on_delete=models.DO_NOTHING,null=True)
-  btitle = models.CharField(max_length=100)
+  btitle = models.CharField(max_length=1000)
   bcontent = models.TextField()
   # 답글을 사용할때 그룹핑
   bgroup = models.IntegerField(null=True)
