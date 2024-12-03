@@ -26,8 +26,9 @@ def bwrite(request):
     member = Member.objects.get(id=id)
     btitle = request.POST.get("btitle")
     bcontent = request.POST.get("bcontent")
+    bfile = request.FILES.get("bfile","")
 
-    qs = Board.objects.create(member=member,btitle=btitle,bcontent=bcontent)
+    qs = Board.objects.create(member=member,btitle=btitle,bcontent=bcontent,bfile=bfile)
 
     qs.bgroup=qs.bno # 번호 생성 후에 입력
     qs.save()

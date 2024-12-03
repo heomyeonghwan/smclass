@@ -6,4 +6,7 @@ urlpatterns = [
     path('blist/', views.blist,name='blist'), # 
     path('bview/<int:bno>/', views.bview,name='bview'), # 
     path('bwrite/', views.bwrite,name='bwrite'), # 
+    path('bdelete/<int:bno>/', views.bdelete,name='bdelete'), # 
+    path('bupdate/<int:bno>/', views.bupdate,name='bupdate'), # 
+    path('breply/<int:bno>/', views.breply,name='breply'), # 
 ]

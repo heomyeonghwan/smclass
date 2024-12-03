@@ -4,11 +4,23 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title>뷰페이지</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <link rel="stylesheet" href="{% static 'css/read.css'%}">
+  <script>
+    $(function(){
+      $("#delBtn").click(function(){
+        //alert("테스트")
+        if(confirm("{{board.bno}}번 데이터를 삭제하시겠습니까?")){
+          location.href="/board/bdelete/{{board.bno}}/"
+        }
+      })
+
+    })
+  </script>
 </head>
 <body>
 <section>
@@ -39,7 +51,13 @@
         <td colspan="3"><strong>이미지 이름</strong> <span class="separator">|</span>{{board.bfile}}</td>
       </tr>
       <tr>
-        <td colspan="3" class="article"><img src="{{board.bfile.url}}"></td>
+        <td colspan="3" class="article">
+          {% if board.bfile %}
+          <img src="{{board.bfile.url}}">
+          {% else %}
+          이미지가 없습니다.
+          {% endif%}
+        </td>
       </tr>
       <tr>
         <td colspan="3"><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
@@ -50,9 +68,9 @@
     </table>
 
     <a href="/board/blist/"><div class="list">목록</div></a>
-    <a href=""><div class="list">삭제</div></a>
-    <a href=""><div class="list">수정</div></a>
-    <a href=""><div class="list">답변달기</div></a>
+    <a id="delBtn"><div class="list">삭제</div></a>
+    <a href="/board/bupdate/{{board.bno}}/"><div class="list">수정</div></a>
+    <a href="/board/breply/{{board.bno}}"><div class="list">답변달기</div></a>
   </section>
 </body>
 </html>
