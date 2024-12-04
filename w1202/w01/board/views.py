@@ -2,24 +2,35 @@ from django.shortcuts import render
 from board.models import Board
 from member.models import Member
 from django.db.models import F
+from django.db.models import Q
+from django.core.paginator import Paginator
 
 
-# 게시판리스트 
-def blist(request):
-  # order_by : 정렬, - : 역순정렬
-  qs = Board.objects.all().order_by("-bgroup","bstep")
 
-  context ={"blist":qs}
-  return render(request,'blist.html',context)
+
+# # 게시판리스트 
+# def blist(request):
+#   # order_by : 정렬, - : 역순정렬
+#   qs = Board.objects.all().order_by("-bgroup","bstep")
+
+#   context ={"blist":qs}
+#   return render(request,'blist.html',context)
+
 
 
 
 # 게시글 상세보기
 def bview(request,bno):
-  qs = Board.objects.get(bno=bno)
+  nowpage = request.GET.get("page",1)
+  qs = Board.objects.get(bno=bno) # 현재글
   qs.bhit = qs.bhit + 1
   qs.save()
-  context = {"board":qs}
+
+  next_qs = Board.objects.filter(Q(bgroup__gt=qs.bgroup,bstep__gte=qs.bstep)|Q(bgroup=qs.bgroup,bstep__lt=qs.bstep)).order_by("-bgroup","bstep").last()
+  prev_qs = Board.objects.filter(Q(bgroup__lt=qs.bgroup,bstep__lte=qs.bstep)|Q(bgroup=qs.bgroup,bstep__gt=qs.bstep)).order_by("-bgroup","bstep").first()
+
+  print("이전글: ",prev_qs.bno)
+  context = {"board":qs,"nowpage":nowpage,"next_board":next_qs,"prev_board":prev_qs}
   return render(request,"bview.html",context)
 
 
@@ -59,10 +70,14 @@ def bdelete(request,bno):
 # 게시글 수정
 def bupdate(request,bno):
   if request.method=="GET":
+    nowpage= request.GET.get("page",1)
+
     qs = Board.objects.get(bno=bno)
-    context ={"board":qs}
+    context ={"board":qs,"nowpage":nowpage}
     return render(request,"bupdate.html",context)
   else:
+    nowpage= request.POST.get("page",1)
+
     bno = request.POST.get("bno")
     btitle = request.POST.get("btitle")
     bcontent = request.POST.get("bcontent")
@@ -74,7 +89,7 @@ def bupdate(request,bno):
     if bfile:
       qs.bfile = bfile
     qs.save()
-    context = {"umsg":"1"}
+    context = {"umsg":"1","nowpage":nowpage}
     return render(request,"bupdate.html",context)
   
 
@@ -82,10 +97,14 @@ def bupdate(request,bno):
 # 답글달기
 def breply(request,bno):
   if request.method == "GET":
+    nowpage = request.GET.get("page",1)
+    
     qs =Board.objects.get(bno=bno)
-    context = {"board":qs}
+    context = {"board":qs,"nowpage":nowpage}
     return render(request,"breply.html",context)
   else:
+    nowpage = request.POST.get("page",1)
+
     id = request.session['session_id']
     member = Member.objects.get(id=id)
     bgroup = request.POST.get("bgroup")
@@ -111,5 +130,17 @@ def breply(request,bno):
     # 새로 입력받은 답글 1증가
     Board.objects.create(member=member,btitle=btitle,bcontent=bcontent,bgroup=bgroup,bstep=bstep+1,bindent=bindent+1,bfile=bfile)
     
-    context ={"rmsg":"1"}
-    return render(request,"breply.html",context)
+    context ={"rmsg":"1","nowpage":nowpage}
+    return render(request,'breply.html',context)
+
+
+
+# 게시판리스트 / 페이지처리
+def blist(request):
+  # order_by : 정렬, - : 역순정렬
+  qs = Board.objects.all().order_by("-bgroup","bstep")
+  paginator = Paginator(qs,10) # 100개 > 10개씩 분리작업
+  nowpage = int(request.GET.get("page",1)) # 현재 몇페이지를 요청했는지 확인
+  list_qs = paginator.get_page(nowpage) # 요청된 페이지의 번호를 가져옴
+  context ={"blist":list_qs,"nowpage":nowpage}
+  return render(request,'blist.html',context)

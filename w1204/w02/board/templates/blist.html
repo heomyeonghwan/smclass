@@ -9,19 +9,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
   <link rel="stylesheet" href="{% static 'css/notice_list.css'%}">
-
-  <script>
-    if("{{dmsg}}" != ''){
-      alert("{{dmsg}}번 게시글이 삭제되었습니다.")
-      location.href="/board/blist/"
-    }
-  </script>
 </head>
 <body>
 <section>
-    <a href="/"><h1>NOTICE</h1></a>
+    <h1>NOTICE</h1>
     <div class="wrapper">
-      <form action="/search" name="search" method="post">
+      <form action="" name="blist" method="post">
         <select name="category" id="category">
           <option value="0">전체</option>
           <option value="title">제목</option>
@@ -55,17 +48,12 @@
       <!-- 내용부분 -->
        {% for board in blist %}
       <tr>
-        <td><span class="table-notice">{{board.bno}}</span></td>
+        <td><span class="table-notice"></span>{{board.bno}}</td>
         <td class="table-title">
-        <a href="/board/bview/{{board.bno}}/?page={{nowpage}}">
-          {% if board.bindent > 0 %}
-          {% for i in ""|ljust:board.bindent %}└{% endfor %}
-          {% endif %}
-          {{board.btitle}}
-        </a>
+        <a href="">{{board.btitle}}</a>
         </td>
-        <td>{{board.member.id}}</td>
-        <td>{{board.bdate|date:'Y-m-d H:m:i'}}</td>
+        <td>{{board.member.nicName}}</td>
+        <td>{{board.bdate}}</td>
         <td>{{board.bhit}}</td>
       </tr>
       {% endfor %}
@@ -73,31 +61,14 @@
     </table>
 
     <ul class="page-num">
-      {% if blist.has_previous %}
-      <a href="/board/blist/?page=1"><li class="first"></li></a>
-      <a href="/board/blist/?page={{blist.previous_page_number}}"><li class="prev"></li></a>
-      {%else%}
       <li class="first"></li>
       <li class="prev"></li>
-      {%endif%}
-      <!--페이지 개수-->
-      {% for page in blist.paginator.page_range %}
-      {% if page == nowpage %}
-      <li class="num on"><div>{{page}}</div></li>
-      {% else %}
-      <a href="/board/blist/?page={{page}}"><li class="num"><div>{{page}}</div></li></a>
-      {% endif %}
-      {% endfor %}
-      {% if blist.has_next %}
-      <a href="/board/blist/?page={{blist.next_page_number}}"><li class="next"></li></a>
-      <a href="/board/blist/?page={{blist.paginator.num_pages}}"><li class="last"></li></a>
-      {% else%}
+      <li class="num"><div>1</div></li>
       <li class="next"></li>
       <li class="last"></li>
-      {% endif%}
     </ul>
 
-    <a href="/board/bwrite/"><div class="write">쓰기</div></a>
+    <a href=""><div class="write">쓰기</div></a>
   </section>
 
 </body>

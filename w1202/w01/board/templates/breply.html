@@ -12,7 +12,7 @@
   <script>
     if("{{rmsg}}"=="1"){
       alert("답글달기가 저장되엇습니다.")
-      location.href="/board/blist/";
+      location.href="/board/blist/?page={{nowpage}}";
     }
 
 
@@ -42,6 +42,7 @@
     <form action="" name="replyFrm" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <table>
+      <input type="hidden" name="page" value="{{nowpage}}">
       <input type="hidden" name="bno" value="{{board.bno}}">
       <input type="hidden" name="bgroup" value="{{board.bgroup}}">
       <input type="hidden" name="bstep" value="{{board.bstep}}">
